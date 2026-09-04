@@ -1,0 +1,6 @@
+#Ignorerar pycache
+__pycache__/
+
+#ignorerar stora datafiler som csv och json
+*.csv
+*.json
