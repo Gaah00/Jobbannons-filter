@@ -4,45 +4,32 @@
 **Repository:** [https://github.com/Gaah00/Jobbannons-filter]
 
 
-## 1. Mål
-En automatiserad datapipeline som hämtar jobbannonser för programmeringsspråk från JobTech API, tvättar datan och förbereder den åt framtida AI-modeller.
+## Mål
+Syftet med projektet är att hämta jobbannonser från JobTech API för godkända programmeringsspråk, tvätta datan via valideringsregler och spara en AI-klar JSON-fil.
 
----
+## Metod
+* **API & Externa bibliotek:** Hämtar realtidsdata från JobTech API med `requests`.
+* **Objektorienterad programmering (OOP):** Använder basklassen `Jobb_annons` och barnklassen `Distans_jobb` (arv) för att validera språk och plats.
+* **Datahantering & GDPR:** Exporterar godkänd data till `output/clean_data.json` tillsammans med GDPR-metadata (`source`, `gdpr_compliant`, `created`).
+* **Felhantering:** Använder `try/except` vid API-anrop för att förhindra krascher vid nätverksfel.
 
-## 2. Metod
-* **OOP (Arv):** Basklassen `Jobb_annons` hanterar validering. Barnklassen `Distans_jobb` ärver via `super().__init__()` och lägger till distans-status.
-* **API & Rådata:** Hämtar data via `requests` och sparar till `data/raw/raw_data.csv`.
-* **Datatvätt & JSON:** Läser CSV med `try/except`, sorterar bort ogiltiga rader och exporterar godkänd data till `output/clean_data.json` med GDPR-metadata.
+## Resultat
+Programmet hämtade jobb för språken Python, Java, C++, C# och SQL. Efter datatvätt filtrerades ogiltiga poster bort och den godkända datan sparades i `output/clean_data.json`.
 
----
+## Branschanalys
+Projektet simulerar en automatiskt datatvätt (Data Pipeline) som förbereder rådata för AI-modeller. I AI-branschen (t.ex. hos bolag som Lovable eller JobTech) är korrekt validerad data avgörande för att förhindra felaktiga beslut i framtida modeller.
 
-## 3. Resultat
-Programmet tvättade datan framgångsrikt och sorterade bort korrupta poster (t.ex. saknade orter). Den färdiga `clean_data.json` innehåller enbart validerad data med tidsstämpel och `gdpr_compliant: True`.
+## Certifikat-koll
+Relevanta yrkescertifikat för denna typ av utveckling och datahantering inkluderar:
+* **Microsoft Certified: Azure AI Engineer Associate**
+* **AWS Certified Developer / Cloud Practitioner**
 
----
+## Reflektion
+* **Vad gick bra:** Strukturerad datatvätt med OOP-metoder och en ren JSON-export med metadata.
+* **Vad var svårt:** Att hantera nästlade ordböcker från API-svar utan att få felutskrifter.
+* **Vad jag skulle göra annorlunda:** Lägga till en visualisering (t.ex. ett stapeldiagram med Matplotlib) över antalet jobb per språk.
 
-## 4. Branschanalys (Mål 1)
-AI-modeller kräver ren data ("Garbage in, garbage out"). Valideringsfiltret förhindrar att felaktiga mätvärden förstör framtida modeller. Automatiska API-flöden speglar hur data-team på bolag som Volvo och Kry samlar in omvärldsdata.
-
----
-
-## 5. Certifikat-koll (Mål 5)
-* **Python Institute (PCEP/PCAP):** Grundläggande certifiering i Python som visar att man behärskar syntax, datatyper, funktioner och OOP.
-* **Databricks Certified Associate:** Certifiering för att bearbeta och hantera data i molnmiljöer med Databricks.
-
-
----
-
-## 6. Reflektion (Mål 8)
-* **Bra:** Arv (OOP) gjorde valideringskoden ren och återanvändbar.
-* **Utmaning:** Hantera tomma orter (`None`) i API-svaret.
-* **Framtid:** Lägga till datavisualisering med Matplotlib (biblotek för datavisualisering i Python som används för att skapa 2D-Grafik).
-
----
-
-## 7. Användning
-1. Klona projektet: `git clone https://github.com/Gaah00/Jobbannons-filter`
-2. Installera bibliotek: `pip install requests`
-3. Kör cellerna i `projekt.ipynb`
-
----
+## Hur man kör koden
+1. Öppna `projekt.ipynb` i VS Code.
+2. Kör alla celler i ordning (Cell 1 till Cell 4).
+3. Den renade datafilen skapas automatiskt i `output/clean_data.json`
